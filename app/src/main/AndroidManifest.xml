@@ -3,11 +3,12 @@
     package="com.jovinz.jobsfindingapp">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".BaseApplication"
         android:theme="@style/AppTheme">
         <activity android:name="com.jovinz.jobsfindingapp.ui.MainActivity">
             <intent-filter>
