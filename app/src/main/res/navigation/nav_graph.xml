@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_jobs_List">
+
+    <fragment
+        android:id="@+id/fragment_jobs_List"
+        android:name="com.jovinz.jobsfindingapp.ui.JobsListingFragment"
+        android:label="Nav Fragment One"
+        tools:layout="@layout/fragment_jobs_listing">
+        <action
+            android:id="@+id/list_to_details"
+            app:destination="@id/fragment_job_detail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <argument
+            android:name="texttoshow"
+            android:defaultValue="none" />
+
+        <argument
+            android:name="data"
+            app:argType="com.jovinz.jobsfindingapp.ui.DataToSend" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_job_detail"
+        android:name="com.jovinz.jobsfindingapp.ui.JobDetailFragment"
+        android:label="Nav Fragment two"
+        tools:layout="@layout/fragment_job_detail">
+
+        <argument
+            android:name="texttoshow"
+            android:defaultValue="none" />
+
+        <argument
+            android:name="data"
+            app:argType="com.jovinz.jobsfindingapp.ui.DataToSend" />
+
+    </fragment>
+
+</navigation>
