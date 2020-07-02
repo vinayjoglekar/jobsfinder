@@ -17,18 +17,11 @@ class MainActivity : DaggerAppCompatActivity() {
     private lateinit var jobsViewModel: JobsViewModel
 
     @Inject
-    lateinit var logo: Drawable
-
-    @Inject
-    lateinit var requestManager: RequestManager
-
-    @Inject
     lateinit var viewModelsProviderFactory: ViewModelsProviderFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        requestManager.load(logo).into(sampleImage)
         jobsViewModel =
             ViewModelProvider(this, viewModelsProviderFactory)[JobsViewModel::class.java]
         jobsViewModel.getJobsData()

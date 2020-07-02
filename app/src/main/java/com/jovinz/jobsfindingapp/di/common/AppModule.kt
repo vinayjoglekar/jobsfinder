@@ -1,11 +1,6 @@
 package com.jovinz.jobsfindingapp.di.common
 
-import android.graphics.drawable.Drawable
-import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.jovinz.jobsfindingapp.BaseApplication
 import com.jovinz.jobsfindingapp.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -24,26 +19,9 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideGlideInstance(
-        application: BaseApplication?
-    ): RequestManager {
-        return Glide.with(application?.applicationContext!!)
-    }
-
-    @Singleton
-    @Provides
-    fun provideAppDrawable(application: BaseApplication?): Drawable {
-        return ContextCompat.getDrawable(
-            application!!,
-            com.jovinz.jobsfindingapp.R.mipmap.ic_launcher_round
-        )!!
-    }
-
-    @Singleton
-    @Provides
     fun provideRetrofitInstance(): Retrofit {
 
-        val logger = HttpLoggingInterceptor(    )
+        val logger = HttpLoggingInterceptor()
         logger.level = HttpLoggingInterceptor.Level.BODY
 
         val client = OkHttpClient.Builder()
