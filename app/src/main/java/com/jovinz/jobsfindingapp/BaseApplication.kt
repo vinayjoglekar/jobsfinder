@@ -1,6 +1,6 @@
 package com.jovinz.jobsfindingapp
 
-import com.jovinz.jobsfindingapp.di.DaggerAppComponent
+import com.jovinz.jobsfindingapp.di.common.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 

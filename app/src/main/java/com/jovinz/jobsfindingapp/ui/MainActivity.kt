@@ -31,6 +31,6 @@ class MainActivity : DaggerAppCompatActivity() {
         requestManager.load(logo).into(sampleImage)
         jobsViewModel =
             ViewModelProvider(this, viewModelsProviderFactory)[JobsViewModel::class.java]
-
+        jobsViewModel.getJobsData()
     }
 }

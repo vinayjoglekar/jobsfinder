@@ -1,4 +1,4 @@
-package com.jovinz.jobsfindingapp.di
+package com.jovinz.jobsfindingapp.di.common
 
 import com.jovinz.jobsfindingapp.BaseApplication
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelFactoryModule
