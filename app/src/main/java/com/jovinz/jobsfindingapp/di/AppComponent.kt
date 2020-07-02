@@ -1,6 +1,7 @@
 package com.jovinz.jobsfindingapp.di
 
 import com.jovinz.jobsfindingapp.BaseApplication
+import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,7 +16,8 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         ActivityBuilderModule::class,
-        AppModule::class
+        AppModule::class,
+        ViewModelFactoryModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication?> {
