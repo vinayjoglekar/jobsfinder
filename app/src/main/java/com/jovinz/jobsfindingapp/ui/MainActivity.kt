@@ -28,6 +28,7 @@ class MainActivity : DaggerAppCompatActivity() {
         setUpViewModel()
         setObservers()
 
+        supportFragmentManager.beginTransaction().replace(R.id.main_container, JobsListingFragment(),"").commit()
     }
 
     private fun setObservers() {
