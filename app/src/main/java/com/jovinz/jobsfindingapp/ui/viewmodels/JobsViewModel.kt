@@ -5,25 +5,38 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.jovinz.jobsfindingapp.data.ResultData
+import com.jovinz.jobsfindingapp.data.jobs.CategoriesResponse
 import com.jovinz.jobsfindingapp.data.jobs.JobsByLangResponseItem
 import com.jovinz.jobsfindingapp.network.JobsApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class JobsViewModel @Inject constructor(private var jobsApi: JobsApi) : ViewModel() {
+class JobsViewModel @Inject constructor(
+    private var jobsApi: JobsApi,
+    private var categoriesResponse: CategoriesResponse
+) : ViewModel() {
 
 
-    var livedata: LiveData<ResultData<List<JobsByLangResponseItem>?>> =
-        MutableLiveData<ResultData<List<JobsByLangResponseItem>?>>()
+    var liveData: LiveData<ResultData<List<JobsByLangResponseItem>?>> = MutableLiveData()
+    var liveDataCategories: LiveData<ResultData<CategoriesResponse?>> = MutableLiveData()
 
     fun getJobsData(): LiveData<ResultData<List<JobsByLangResponseItem>?>> {
 
-        livedata = flow {
+        liveData = flow {
             emit(ResultData.Loading())
             emit(ResultData.Success(jobsApi.getJobsByLang("python")))
         }.asLiveData(Dispatchers.IO)
-        return livedata
+        return liveData
     }
+
+    fun getCategoriesData(): LiveData<ResultData<CategoriesResponse?>> {
+        liveDataCategories = flow {
+            emit(ResultData.Loading())
+            emit(ResultData.Success(categoriesResponse))
+        }.asLiveData(Dispatchers.IO)
+        return liveDataCategories
+    }
+
 
 }

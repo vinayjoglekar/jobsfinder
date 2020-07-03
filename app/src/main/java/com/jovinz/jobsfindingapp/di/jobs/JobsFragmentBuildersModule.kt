@@ -1,7 +1,8 @@
 package com.jovinz.jobsfindingapp.di.jobs
 
-import com.jovinz.jobsfindingapp.ui.JobDetailFragment
-import com.jovinz.jobsfindingapp.ui.JobsListingFragment
+import com.jovinz.jobsfindingapp.ui.fragments.CategorySelectionFragment
+import com.jovinz.jobsfindingapp.ui.fragments.JobDetailFragment
+import com.jovinz.jobsfindingapp.ui.fragments.JobsListingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,5 +14,8 @@ abstract class JobsFragmentBuildersModule {
     abstract fun contributeProfileFragment(): JobsListingFragment
 
     @ContributesAndroidInjector
-    abstract fun contributePostsFragment(): JobDetailFragment
+    abstract fun contributeJobDetailFragment(): JobDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeCategoriesSelectionFragment(): CategorySelectionFragment
 }

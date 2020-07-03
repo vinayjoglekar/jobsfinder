@@ -1,6 +1,8 @@
 package com.jovinz.jobsfindingapp.utils
 
+import android.content.Context
 import android.view.View
+import java.io.IOException
 
 
 fun View.visible() {
@@ -13,5 +15,14 @@ fun View.invisible() {
 
 fun View.gone() {
     visibility = View.GONE
+}
+
+fun Context.getDataFromAssetFile(fileName: String): String? {
+    return try {
+        assets.open(fileName).bufferedReader().use { it.readText() }
+    } catch (ioException: IOException) {
+        ioException.printStackTrace()
+        null
+    }
 }
 

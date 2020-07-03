@@ -1,6 +1,6 @@
 package com.jovinz.jobsfindingapp.di.common
 
-import com.jovinz.jobsfindingapp.BaseApplication
+import com.jovinz.jobsfindingapp.app.BaseApplication
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component

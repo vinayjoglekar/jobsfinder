@@ -1,4 +1,4 @@
-package com.jovinz.jobsfindingapp.ui
+package com.jovinz.jobsfindingapp.ui.activity
 
 import android.os.Bundle
 import com.jovinz.jobsfindingapp.R

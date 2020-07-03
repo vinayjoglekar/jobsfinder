@@ -1,7 +1,6 @@
-package com.jovinz.jobsfindingapp.ui
+package com.jovinz.jobsfindingapp.ui.fragments
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,12 +9,12 @@ import androidx.navigation.fragment.findNavController
 import com.jovinz.jobsfindingapp.R
 import com.jovinz.jobsfindingapp.data.ResultData
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelsProviderFactory
+import com.jovinz.jobsfindingapp.ui.adapter.JobsRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.ui.viewmodels.JobsViewModel
 import com.jovinz.jobsfindingapp.utils.VerticalSpacingItemDecoration
 import com.jovinz.jobsfindingapp.utils.gone
 import com.jovinz.jobsfindingapp.utils.visible
 import dagger.android.support.DaggerFragment
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_jobs_listing.*
 import javax.inject.Inject
 
@@ -42,7 +41,6 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         navController = findNavController()
         recyclerviewJobs.addItemDecoration(verticalSpacingItemDecoration)
         recyclerviewJobs.adapter = adapter
@@ -59,7 +57,7 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
     }
 
     private fun setObservers() {
-        jobsViewModel.livedata.observe(viewLifecycleOwner, Observer { value ->
+        jobsViewModel.liveData.observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
                     progressJobsListing.visible()
@@ -80,6 +78,3 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
     }
 
 }
-
-@Parcelize
-data class DataToSend(var string: String) : Parcelable

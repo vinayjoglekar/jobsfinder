@@ -4,7 +4,7 @@ import com.jovinz.jobsfindingapp.di.jobs.JobsFragmentBuildersModule
 import com.jovinz.jobsfindingapp.di.jobs.JobsModule
 import com.jovinz.jobsfindingapp.di.jobs.JobsScope
 import com.jovinz.jobsfindingapp.di.jobs.JobsViewModelsModule
-import com.jovinz.jobsfindingapp.ui.MainActivity
+import com.jovinz.jobsfindingapp.ui.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
