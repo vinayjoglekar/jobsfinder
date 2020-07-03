@@ -9,7 +9,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class JobsFragmentBuildersModule {
 
-
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment(): JobsListingFragment
 

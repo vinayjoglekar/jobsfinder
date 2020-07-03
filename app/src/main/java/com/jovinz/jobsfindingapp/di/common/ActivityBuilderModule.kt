@@ -2,21 +2,17 @@ package com.jovinz.jobsfindingapp.di.common
 
 import com.jovinz.jobsfindingapp.di.jobs.JobsFragmentBuildersModule
 import com.jovinz.jobsfindingapp.di.jobs.JobsModule
+import com.jovinz.jobsfindingapp.di.jobs.JobsScope
 import com.jovinz.jobsfindingapp.di.jobs.JobsViewModelsModule
 import com.jovinz.jobsfindingapp.ui.MainActivity
-import dagger.Binds
 import dagger.Module
-import dagger.Subcomponent
-import dagger.android.AndroidInjector
 import dagger.android.ContributesAndroidInjector
-import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMap
 
 @Module
 abstract class ActivityBuilderModule {
 
     //provides activity to the AppComponent. [potential client for injection to AppComponent]
-
+    @JobsScope
     @ContributesAndroidInjector(
         modules = [JobsFragmentBuildersModule::class, JobsViewModelsModule::class, JobsModule::class]
     )

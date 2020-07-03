@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.jovinz.jobsfindingapp.R
 import com.jovinz.jobsfindingapp.data.jobs.JobsByLangResponseItem
 import com.jovinz.jobsfindingapp.databinding.ItemJobsListBinding
@@ -31,12 +33,19 @@ class JobsRecyclerViewAdapter :
         this.notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {return jobs.size}
+    override fun getItemCount(): Int {
+        return jobs.size
+    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val holder = holder as JobsRecyclerViewHolder
         val job = jobs[holder.adapterPosition]
         holder.binding.job = job
+
+        Glide.with(holder.binding.imgCompany.context)
+            .load(job.companyLogo)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(holder.binding.imgCompany)
     }
 
 

@@ -10,13 +10,16 @@ import retrofit2.Retrofit
 @Module
 class JobsModule {
 
+    @JobsScope
     @Provides
     fun provideJobsRecyclerViewAdapter(): JobsRecyclerViewAdapter = JobsRecyclerViewAdapter()
 
+    @JobsScope
     @Provides
     fun provideRecyclerViewItemDecoration(): VerticalSpacingItemDecoration =
-        VerticalSpacingItemDecoration(15)
+        VerticalSpacingItemDecoration(12)
 
+    @JobsScope
     @Provides
     fun providesJobsApi(retrofit: Retrofit): JobsApi = retrofit.create(JobsApi::class.java)
 
