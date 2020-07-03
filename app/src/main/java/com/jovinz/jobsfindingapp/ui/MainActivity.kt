@@ -17,34 +17,34 @@ import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
 
-    private lateinit var jobsViewModel: JobsViewModel
-
-    @Inject
-    lateinit var viewModelsProviderFactory: ViewModelsProviderFactory
+//    private lateinit var jobsViewModel: JobsViewModel
+//
+//    @Inject
+//    lateinit var viewModelsProviderFactory: ViewModelsProviderFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setUpViewModel()
-        setObservers()
+//        setUpViewModel()
+//        setObservers()
 
         supportFragmentManager.beginTransaction().replace(R.id.main_container, JobsListingFragment(),"").commit()
     }
 
-    private fun setObservers() {
-        jobsViewModel.getJobsData().observe(this, Observer { value ->
-            when (value) {
-                is ResultData.Loading -> {
-                }
-                is ResultData.Success -> {
-                    Log.d("MainActivity", value.data?.size.toString())
-                }
-            }
-        })
-    }
-
-    private fun setUpViewModel() {
-        jobsViewModel =
-            ViewModelProvider(this, viewModelsProviderFactory)[JobsViewModel::class.java]
-    }
+//    private fun setObservers() {
+//        jobsViewModel.getJobsData().observe(this, Observer { value ->
+//            when (value) {
+//                is ResultData.Loading -> {
+//                }
+//                is ResultData.Success -> {
+//                    Log.d("MainActivity", value.data?.size.toString())
+//                }
+//            }
+//        })
+//    }
+//
+//    private fun setUpViewModel() {
+//        jobsViewModel =
+//            ViewModelProvider(this, viewModelsProviderFactory)[JobsViewModel::class.java]
+//    }
 }
