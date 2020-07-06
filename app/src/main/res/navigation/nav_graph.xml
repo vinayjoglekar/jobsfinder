@@ -8,10 +8,9 @@
     <fragment
         android:id="@+id/fragment_cat_selection"
         android:name="com.jovinz.jobsfindingapp.ui.fragments.CategorySelectionFragment"
-        android:label="Nav Fragment One"
         tools:layout="@layout/fragment_category_selection">
         <action
-            android:id="@+id/action_fragment_cat_selection_to_fragment_jobs_List"
+            android:id="@+id/category_to_jobs"
             app:destination="@id/fragment_jobs_List"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -25,7 +24,6 @@
     <fragment
         android:id="@+id/fragment_jobs_List"
         android:name="com.jovinz.jobsfindingapp.ui.fragments.JobsListingFragment"
-        android:label="Nav Fragment One"
         tools:layout="@layout/fragment_jobs_listing">
         <action
             android:id="@+id/list_to_details"
@@ -39,25 +37,17 @@
             android:name="texttoshow"
             android:defaultValue="none" />
 
-<!--        <argument-->
-        <!--            android:name="data"-->
-        <!--            app:argType="com.jovinz.jobsfindingapp.ui.DataToSend" />-->
-
     </fragment>
 
     <fragment
         android:id="@+id/fragment_job_detail"
         android:name="com.jovinz.jobsfindingapp.ui.fragments.JobDetailFragment"
-        android:label="Nav Fragment two"
         tools:layout="@layout/fragment_job_detail">
 
         <argument
             android:name="texttoshow"
             android:defaultValue="none" />
 
-<!--        <argument-->
-<!--            android:name="data"-->
-<!--            app:argType="com.jovinz.jobsfindingapp.ui.DataToSend" />-->
 
     </fragment>
 

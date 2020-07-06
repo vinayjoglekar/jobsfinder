@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.jovinz.jobsfindingapp.R
@@ -24,6 +25,8 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 
     private lateinit var jobsViewModel: JobsViewModel
 
+    private lateinit var category: String
+
     @Inject
     lateinit var adapter: JobsRecyclerViewAdapter
 
@@ -35,8 +38,9 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        category = arguments?.getString("category").toString()
         setUpViewModel()
-        jobsViewModel.getJobsData()
+//        jobsViewModel.getJobsData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,19 +49,10 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
         recyclerviewJobs.addItemDecoration(verticalSpacingItemDecoration)
         recyclerviewJobs.adapter = adapter
         setObservers()
-//        abc.setOnClickListener {
-//            val data = DataToSend("Here is the data to send")
-//            val bundle = bundleOf(
-//                "texttoshow" to abc.text,
-//                "data" to data
-//            )
-
-//            navController.navigate(R.id.list_to_details, bundle)
-//        }
     }
 
     private fun setObservers() {
-        jobsViewModel.liveData.observe(viewLifecycleOwner, Observer { value ->
+        jobsViewModel.fetchJobs(category).observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
                     progressJobsListing.visible()
@@ -67,6 +62,9 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
                     value.data?.let {
                         adapter.setJobs(it)
                     }
+                }
+                is ResultData.Failed -> {
+                    progressJobsListing.gone()
                 }
             }
         })

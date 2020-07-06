@@ -1,15 +1,18 @@
 package com.jovinz.jobsfindingapp.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jovinz.jobsfindingapp.R
 import com.jovinz.jobsfindingapp.data.ResultData
+import com.jovinz.jobsfindingapp.data.jobs.CategoriesResponse
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelsProviderFactory
 import com.jovinz.jobsfindingapp.ui.adapter.CategoriesRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.ui.viewmodels.JobsViewModel
@@ -19,7 +22,8 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 import javax.inject.Inject
 
-class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection) {
+class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection),
+    onItemClickListener {
 
     private lateinit var navController: NavController
 
@@ -34,7 +38,6 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpViewModel()
-        jobsViewModel.getCategoriesData()
     }
 
     private fun setUpViewModel() {
@@ -47,6 +50,8 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
         navController = findNavController()
         recyclerviewCategories.layoutManager = GridLayoutManager(context, 2)
         recyclerviewCategories.adapter = adapter
+
+
         jobsViewModel.liveDataCategories.observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
@@ -55,7 +60,8 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
                 is ResultData.Success -> {
                     progressCatSelection.gone()
                     value.data?.let {
-                        value.data.response?.let { it -> adapter.setCategories(it) }
+                        value.data.response?.let { adapter.setCategories(it) }
+                        adapter.onItemClickListener = this
                     }
                 }
             }
@@ -63,5 +69,17 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
 
     }
 
+    override fun <T> onItemClick(data: T) {
+        navController.navigate(
+            R.id.category_to_jobs, bundleOf(
+                "category" to data
+            )
+        )
+    }
 
+
+}
+
+interface onItemClickListener {
+    fun <T> onItemClick(data: T)
 }

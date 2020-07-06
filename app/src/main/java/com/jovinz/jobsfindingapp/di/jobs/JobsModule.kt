@@ -3,6 +3,7 @@ package com.jovinz.jobsfindingapp.di.jobs
 import com.google.gson.Gson
 import com.jovinz.jobsfindingapp.app.BaseApplication
 import com.jovinz.jobsfindingapp.data.jobs.CategoriesResponse
+import com.jovinz.jobsfindingapp.data.jobs.JobsRepository
 import com.jovinz.jobsfindingapp.network.JobsApi
 import com.jovinz.jobsfindingapp.ui.adapter.CategoriesRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.ui.adapter.JobsRecyclerViewAdapter
@@ -33,6 +34,11 @@ class JobsModule {
     @JobsScope
     @Provides
     fun providesJobsApi(retrofit: Retrofit): JobsApi = retrofit.create(JobsApi::class.java)
+
+    @JobsScope
+    @Provides
+    fun providesJobsRepository(jobsApi: JobsApi, categoriesResponse: CategoriesResponse):
+            JobsRepository = JobsRepository(jobsApi, categoriesResponse)
 
     @JobsScope
     @Provides

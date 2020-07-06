@@ -29,6 +29,7 @@ class JobsRecyclerViewAdapter :
     }
 
     fun setJobs(jobs: List<JobsByLangResponseItem>) {
+        this.jobs.clear()
         this.jobs.addAll(jobs)
         this.notifyDataSetChanged()
     }
