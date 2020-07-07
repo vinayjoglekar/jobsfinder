@@ -25,7 +25,7 @@ import javax.inject.Inject
 class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection),
     onItemClickListener {
 
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
 
     private lateinit var jobsViewModel: JobsViewModel
 

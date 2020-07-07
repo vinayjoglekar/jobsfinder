@@ -7,7 +7,7 @@ import com.jovinz.jobsfindingapp.data.jobs.JobsByLangResponseItem
 import com.jovinz.jobsfindingapp.data.jobs.JobsRepository
 import javax.inject.Inject
 
-class JobsViewModel @Inject constructor(
+open class JobsViewModel @Inject constructor(
     private val jobsRepository: JobsRepository
 ) : ViewModel() {
 

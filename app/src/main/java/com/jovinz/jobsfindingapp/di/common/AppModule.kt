@@ -16,7 +16,7 @@ import javax.inject.Singleton
 //of the application
 
 @Module
-class AppModule {
+open class AppModule {
 
     @Singleton
     @Provides

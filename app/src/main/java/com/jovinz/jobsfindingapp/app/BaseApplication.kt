@@ -1,7 +1,9 @@
 package com.jovinz.jobsfindingapp.app
 
 import android.content.Context
+import com.jovinz.jobsfindingapp.di.common.AppModule
 import com.jovinz.jobsfindingapp.di.common.DaggerAppComponent
+import com.jovinz.jobsfindingapp.di.jobs.JobsModule
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
@@ -20,6 +22,6 @@ class BaseApplication : DaggerApplication() {
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication?>? {
-        return DaggerAppComponent.builder().application(this)!!.build()
+        return DaggerAppComponent.builder().application(this)?.appModule(AppModule())?.build()
     }
 }

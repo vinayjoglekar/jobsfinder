@@ -13,7 +13,7 @@ import com.jovinz.jobsfindingapp.databinding.ItemCategoriesListBinding
 import com.jovinz.jobsfindingapp.databinding.ItemJobsListBinding
 import com.jovinz.jobsfindingapp.ui.fragments.onItemClickListener
 
-class CategoriesRecyclerViewAdapter :
+open class CategoriesRecyclerViewAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var categories: MutableList<Response> = ArrayList()

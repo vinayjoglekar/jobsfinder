@@ -14,33 +14,27 @@ import dagger.Provides
 import retrofit2.Retrofit
 
 @Module
-class JobsModule {
+open class JobsModule {
 
-    @JobsScope
     @Provides
     fun provideJobsRecyclerViewAdapter(): JobsRecyclerViewAdapter =
         JobsRecyclerViewAdapter()
 
-    @JobsScope
     @Provides
     fun provideRecyclerViewItemDecoration(): VerticalSpacingItemDecoration =
         VerticalSpacingItemDecoration(12)
 
-    @JobsScope
     @Provides
     fun provideJobsCategoriesViewAdapter(): CategoriesRecyclerViewAdapter =
         CategoriesRecyclerViewAdapter()
 
-    @JobsScope
     @Provides
     fun providesJobsApi(retrofit: Retrofit): JobsApi = retrofit.create(JobsApi::class.java)
 
-    @JobsScope
     @Provides
     fun providesJobsRepository(jobsApi: JobsApi, categoriesResponse: CategoriesResponse):
             JobsRepository = JobsRepository(jobsApi, categoriesResponse)
 
-    @JobsScope
     @Provides
     fun provideJobsCategories(): CategoriesResponse {
         return Gson().fromJson(

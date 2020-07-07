@@ -1,6 +1,7 @@
 package com.jovinz.jobsfindingapp.di.common
 
 import com.jovinz.jobsfindingapp.app.BaseApplication
+import com.jovinz.jobsfindingapp.di.jobs.JobsModule
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
@@ -26,6 +27,7 @@ interface AppComponent : AndroidInjector<BaseApplication?> {
     interface Builder {
         @BindsInstance
         fun application(application: BaseApplication?): Builder?
+        fun appModule(module: AppModule): Builder?
         fun build(): AppComponent?
     }
 }
