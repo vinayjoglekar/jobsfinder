@@ -25,7 +25,7 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 
     private lateinit var jobsViewModel: JobsViewModel
 
-    private lateinit var category: String
+    private var category: Category? = null
 
     @Inject
     lateinit var adapter: JobsRecyclerViewAdapter
@@ -38,36 +38,45 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        category = arguments?.getString("category").toString()
+        category = arguments?.getParcelable("category")
         setUpViewModel()
-//        jobsViewModel.getJobsData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
+        activity?.title = category?.category.toString()
         recyclerviewJobs.addItemDecoration(verticalSpacingItemDecoration)
         recyclerviewJobs.adapter = adapter
         setObservers()
     }
 
     private fun setObservers() {
-        jobsViewModel.fetchJobs(category).observe(viewLifecycleOwner, Observer { value ->
-            when (value) {
-                is ResultData.Loading -> {
-                    progressJobsListing.visible()
-                }
-                is ResultData.Success -> {
-                    progressJobsListing.gone()
-                    value.data?.let {
-                        adapter.setJobs(it)
+        jobsViewModel.fetchJobs(category?.category.toString())
+            .observe(viewLifecycleOwner, Observer { value ->
+                when (value) {
+                    is ResultData.Loading -> {
+                        tvNoJobs.gone()
+                        progressJobsListing.visible()
+                    }
+                    is ResultData.Success -> {
+                        progressJobsListing.gone()
+                        if (value.data.isNullOrEmpty()) {
+                            tvNoJobs.text = getString(R.string.no_jobs_available_for_this_category)
+                            tvNoJobs.visible()
+                            return@Observer
+                        }
+                        value.data.let {
+                            adapter.setJobs(it)
+                        }
+                    }
+                    is ResultData.Failed -> {
+                        tvNoJobs.text = getString(R.string.error_mmsg)
+                        tvNoJobs.visible()
+                        progressJobsListing.gone()
                     }
                 }
-                is ResultData.Failed -> {
-                    progressJobsListing.gone()
-                }
-            }
-        })
+            })
     }
 
     private fun setUpViewModel() {

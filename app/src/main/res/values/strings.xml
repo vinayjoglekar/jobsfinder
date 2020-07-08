@@ -2,4 +2,6 @@
     <string name="app_name">Jobs Finder</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_jobs_available_for_this_category">No Jobs available for this category</string>
+    <string name="error_mmsg">Something went wrong!</string>
 </resources>

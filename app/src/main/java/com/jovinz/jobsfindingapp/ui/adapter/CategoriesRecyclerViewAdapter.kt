@@ -4,21 +4,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.jovinz.jobsfindingapp.R
-import com.jovinz.jobsfindingapp.data.jobs.JobsByLangResponseItem
 import com.jovinz.jobsfindingapp.data.jobs.Response
 import com.jovinz.jobsfindingapp.databinding.ItemCategoriesListBinding
-import com.jovinz.jobsfindingapp.databinding.ItemJobsListBinding
-import com.jovinz.jobsfindingapp.ui.fragments.onItemClickListener
+import com.jovinz.jobsfindingapp.ui.fragments.OnItemClickListener
 
 open class CategoriesRecyclerViewAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var categories: MutableList<Response> = ArrayList()
 
-    lateinit var onItemClickListener: onItemClickListener
+    lateinit var onItemClickListener: OnItemClickListener
 
     inner class CategoriesRecyclerViewHolder(val binding: ItemCategoriesListBinding) :
         RecyclerView.ViewHolder(binding.root)

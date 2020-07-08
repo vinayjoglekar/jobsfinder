@@ -1,29 +1,28 @@
 package com.jovinz.jobsfindingapp.ui.fragments
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
-import android.widget.AdapterView
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jovinz.jobsfindingapp.R
 import com.jovinz.jobsfindingapp.data.ResultData
-import com.jovinz.jobsfindingapp.data.jobs.CategoriesResponse
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelsProviderFactory
 import com.jovinz.jobsfindingapp.ui.adapter.CategoriesRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.ui.viewmodels.JobsViewModel
 import com.jovinz.jobsfindingapp.utils.gone
 import com.jovinz.jobsfindingapp.utils.visible
 import dagger.android.support.DaggerFragment
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 import javax.inject.Inject
 
 class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection),
-    onItemClickListener {
+    OnItemClickListener {
 
     lateinit var navController: NavController
 
@@ -72,7 +71,7 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
     override fun <T> onItemClick(data: T) {
         navController.navigate(
             R.id.category_to_jobs, bundleOf(
-                "category" to data
+                "category" to Category(data.toString())
             )
         )
     }
@@ -80,6 +79,9 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
 
 }
 
-interface onItemClickListener {
+interface OnItemClickListener {
     fun <T> onItemClick(data: T)
 }
+
+@Parcelize
+data class Category(var category: String) : Parcelable
