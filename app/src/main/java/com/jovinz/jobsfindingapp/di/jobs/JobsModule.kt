@@ -31,9 +31,9 @@ open class JobsModule {
     @Provides
     fun providesJobsApi(retrofit: Retrofit): JobsApi = retrofit.create(JobsApi::class.java)
 
-    @Provides
-    fun providesJobsRepository(jobsApi: JobsApi, categoriesResponse: CategoriesResponse):
-            JobsRepository = JobsRepository(jobsApi, categoriesResponse)
+//    @Provides
+//    fun providesJobsRepository(jobsApi: JobsApi, categoriesResponse: CategoriesResponse):
+//            JobsRepository = JobsRepository(jobsApi, categoriesResponse)
 
     @Provides
     fun provideJobsCategories(): CategoriesResponse {

@@ -52,7 +52,7 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
         recyclerviewCategories.adapter = adapter
 
 
-        jobsViewModel.liveDataCategories.observe(viewLifecycleOwner, Observer { value ->
+        jobsViewModel.getCategories().observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
                     progressCatSelection.visible()
