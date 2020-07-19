@@ -1,7 +1,7 @@
 Jobs Listing App using [Gihub's jobs api](https://jobs.github.com/api)
 
-1. [MVVM](https://developer.android.com/jetpack/guide)
-2. [Dagger2](https://github.com/google/dagger)
-3. [Jetpack Navation Component](https://developer.android.com/guide/navigation)
-4. [Retrofit](https://github.com/square/retrofit)
-5. [Coroutines](https://developer.android.com/kotlin/coroutines)
+* [MVVM](https://developer.android.com/jetpack/guide)
+* [Dagger2](https://github.com/google/dagger)
+* [Jetpack Navation Component](https://developer.android.com/guide/navigation)
+* [Retrofit](https://github.com/square/retrofit)
+* [Coroutines](https://developer.android.com/kotlin/coroutines)
