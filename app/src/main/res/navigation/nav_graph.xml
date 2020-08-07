@@ -18,37 +18,37 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <argument
             android:name="category"
-            app:argType="com.jovinz.jobsfindingapp.ui.fragments.Category" />
+            app:argType="com.jovinz.jobsfindingapp.data.Category" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_jobs_List"
         android:name="com.jovinz.jobsfindingapp.ui.fragments.JobsListingFragment"
         tools:layout="@layout/fragment_jobs_listing">
-<!--        <action-->
-<!--            android:id="@+id/list_to_details"-->
-<!--            app:destination="@id/fragment_job_detail"-->
-<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
-<!--            app:exitAnim="@anim/nav_default_exit_anim"-->
-<!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
-<!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
+        <!--        <action-->
+        <!--            android:id="@+id/list_to_details"-->
+        <!--            app:destination="@id/fragment_job_detail"-->
+        <!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+        <!--            app:exitAnim="@anim/nav_default_exit_anim"-->
+        <!--            app:popEnterAnim="@anim/nav_default_pop_enter_anim"-->
+        <!--            app:popExitAnim="@anim/nav_default_pop_exit_anim" />-->
 
         <argument
             android:name="category"
-            app:argType="com.jovinz.jobsfindingapp.ui.fragments.Category" />
+            app:argType="com.jovinz.jobsfindingapp.data.Category" />
 
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/fragment_job_detail"-->
-<!--        android:name="com.jovinz.jobsfindingapp.ui.fragments.JobDetailFragment"-->
-<!--        tools:layout="@layout/fragment_job_detail">-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/fragment_job_detail"-->
+    <!--        android:name="com.jovinz.jobsfindingapp.ui.fragments.JobDetailFragment"-->
+    <!--        tools:layout="@layout/fragment_job_detail">-->
 
-<!--        <argument-->
-<!--            android:name="texttoshow"-->
-<!--            android:defaultValue="none" />-->
+    <!--        <argument-->
+    <!--            android:name="texttoshow"-->
+    <!--            android:defaultValue="none" />-->
 
 
-<!--    </fragment>-->
+    <!--    </fragment>-->
 
 </navigation>

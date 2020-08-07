@@ -10,7 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.jovinz.jobsfindingapp.R
+import com.jovinz.jobsfindingapp.data.Category
 import com.jovinz.jobsfindingapp.data.ResultData
+import com.jovinz.jobsfindingapp.data.jobs.Response
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelsProviderFactory
 import com.jovinz.jobsfindingapp.ui.adapter.CategoriesRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.ui.viewmodels.JobsViewModel
@@ -21,8 +23,8 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 import javax.inject.Inject
 
-class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection),
-    OnItemClickListener {
+class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection) {
+//    ,OnItemClickListener
 
     lateinit var navController: NavController
 
@@ -50,7 +52,6 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
         recyclerviewCategories.layoutManager = GridLayoutManager(context, 2)
         recyclerviewCategories.adapter = adapter
 
-
         jobsViewModel.getCategories().observe(viewLifecycleOwner, Observer { value ->
             when (value) {
                 is ResultData.Loading -> {
@@ -58,9 +59,8 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
                 }
                 is ResultData.Success -> {
                     progressCatSelection.gone()
-                    value.data?.let {
-                        value.data.response?.let { adapter.setCategories(it) }
-                        adapter.onItemClickListener = this
+                    value.data?.response?.let {
+                        setAdapter(it)
                     }
                 }
             }
@@ -68,20 +68,15 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
 
     }
 
-    override fun <T> onItemClick(data: T) {
-        navController.navigate(
-            R.id.category_to_jobs, bundleOf(
-                "category" to Category(data.toString())
+    private fun setAdapter(response: List<Response>) {
+        adapter.setCategories(response)
+        adapter.setItemAction { data ->
+            navController.navigate(
+                R.id.category_to_jobs, bundleOf(
+                    "category" to Category(data)
+                )
             )
-        )
+        }
     }
-
-
 }
 
-interface OnItemClickListener {
-    fun <T> onItemClick(data: T)
-}
-
-@Parcelize
-data class Category(var category: String) : Parcelable

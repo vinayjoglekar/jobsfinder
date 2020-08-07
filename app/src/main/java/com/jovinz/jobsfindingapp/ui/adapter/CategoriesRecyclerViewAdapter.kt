@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jovinz.jobsfindingapp.R
 import com.jovinz.jobsfindingapp.data.jobs.Response
 import com.jovinz.jobsfindingapp.databinding.ItemCategoriesListBinding
-import com.jovinz.jobsfindingapp.ui.fragments.OnItemClickListener
 
 open class CategoriesRecyclerViewAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var categories: MutableList<Response> = ArrayList()
 
-    lateinit var onItemClickListener: OnItemClickListener
+//    lateinit var onItemClickListener: OnItemClickListener
 
     inner class CategoriesRecyclerViewHolder(val binding: ItemCategoriesListBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -42,14 +41,22 @@ open class CategoriesRecyclerViewAdapter :
         val jobsRecyclerViewHolder = holder as CategoriesRecyclerViewHolder
         val category = categories[jobsRecyclerViewHolder.adapterPosition]
         jobsRecyclerViewHolder.binding.category = category
-
-        jobsRecyclerViewHolder.itemView.setOnClickListener {
-            onItemClickListener.onItemClick(
-                category.category
-            )
+        itemAction?.let {
+            jobsRecyclerViewHolder.itemView.setOnClickListener { it(category.category.toString()) }
         }
+//        jobsRecyclerViewHolder.itemView.setOnClickListener {
+//            onItemClickListener.onItemClick(
+//
+//            )
+//        }
 
 
+    }
+
+    private var itemAction: ((String) -> Unit)? = null
+
+    fun setItemAction(action: (String) -> Unit) {
+        this.itemAction = action
     }
 
 

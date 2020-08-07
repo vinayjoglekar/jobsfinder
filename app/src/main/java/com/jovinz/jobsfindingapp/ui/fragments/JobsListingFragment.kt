@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.jovinz.jobsfindingapp.R
+import com.jovinz.jobsfindingapp.data.Category
 import com.jovinz.jobsfindingapp.data.ResultData
 import com.jovinz.jobsfindingapp.di.viewmodels.ViewModelsProviderFactory
 import com.jovinz.jobsfindingapp.ui.adapter.JobsRecyclerViewAdapter
