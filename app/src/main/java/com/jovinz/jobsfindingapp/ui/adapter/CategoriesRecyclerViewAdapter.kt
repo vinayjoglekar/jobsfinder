@@ -13,7 +13,6 @@ open class CategoriesRecyclerViewAdapter :
 
     private var categories: MutableList<Response> = ArrayList()
 
-//    lateinit var onItemClickListener: OnItemClickListener
 
     inner class CategoriesRecyclerViewHolder(val binding: ItemCategoriesListBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -44,13 +43,6 @@ open class CategoriesRecyclerViewAdapter :
         itemAction?.let {
             jobsRecyclerViewHolder.itemView.setOnClickListener { it(category.category.toString()) }
         }
-//        jobsRecyclerViewHolder.itemView.setOnClickListener {
-//            onItemClickListener.onItemClick(
-//
-//            )
-//        }
-
-
     }
 
     private var itemAction: ((String) -> Unit)? = null

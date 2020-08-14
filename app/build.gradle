@@ -130,4 +130,9 @@ dependencies {
     testImplementation 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.5'
     //and/or
     androidTestImplementation 'com.github.fabioCollini.daggermock:daggermock-kotlin:0.8.5'
+
+
+    def paging_version = "3.0.0-alpha04"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
 }

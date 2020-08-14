@@ -11,5 +11,5 @@ interface JobsApi {
     suspend fun getJobsByLang(@Query("description") description: String): List<JobsByLangResponseItem>
 
     @GET("positions.json")
-    suspend fun getJobsByLangFlow(@Query("description") description: String): List<JobsByLangResponseItem>
+    suspend fun getJobsByLangFlow(@Query("description") description: String,@Query("page") pageNumber: Int): List<JobsByLangResponseItem>
 }

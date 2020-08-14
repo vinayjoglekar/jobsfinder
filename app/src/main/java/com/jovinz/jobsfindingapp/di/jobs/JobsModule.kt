@@ -6,6 +6,7 @@ import com.jovinz.jobsfindingapp.data.jobs.CategoriesResponse
 import com.jovinz.jobsfindingapp.data.jobs.JobsRepository
 import com.jovinz.jobsfindingapp.network.JobsApi
 import com.jovinz.jobsfindingapp.ui.adapter.CategoriesRecyclerViewAdapter
+import com.jovinz.jobsfindingapp.ui.adapter.JobsPagedAdapter
 import com.jovinz.jobsfindingapp.ui.adapter.JobsRecyclerViewAdapter
 import com.jovinz.jobsfindingapp.utils.VerticalSpacingItemDecoration
 import com.jovinz.jobsfindingapp.utils.getDataFromAssetFile
@@ -19,6 +20,10 @@ open class JobsModule {
     @Provides
     fun provideJobsRecyclerViewAdapter(): JobsRecyclerViewAdapter =
         JobsRecyclerViewAdapter()
+
+    @Provides
+    fun provideJobsPagedAdapter(): JobsPagedAdapter =
+        JobsPagedAdapter()
 
     @Provides
     fun provideRecyclerViewItemDecoration(): VerticalSpacingItemDecoration =

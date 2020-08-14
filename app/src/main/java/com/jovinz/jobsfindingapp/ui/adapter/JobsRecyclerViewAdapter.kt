@@ -47,6 +47,16 @@ class JobsRecyclerViewAdapter :
             .load(job.companyLogo)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(jobsRecyclerViewHolder.binding.imgCompany)
+
+        itemAction?.let {
+            jobsRecyclerViewHolder.itemView.setOnClickListener { it(job.id!!) }
+        }
+    }
+
+    private var itemAction: ((String) -> Unit)? = null
+
+    fun setItemAction(action: (String) -> Unit) {
+        this.itemAction = action
     }
 
 

@@ -1,7 +1,6 @@
 package com.jovinz.jobsfindingapp.ui.fragments
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
@@ -19,14 +18,12 @@ import com.jovinz.jobsfindingapp.ui.viewmodels.JobsViewModel
 import com.jovinz.jobsfindingapp.utils.gone
 import com.jovinz.jobsfindingapp.utils.visible
 import dagger.android.support.DaggerFragment
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 import javax.inject.Inject
 
 class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_selection) {
-//    ,OnItemClickListener
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     private lateinit var jobsViewModel: JobsViewModel
 
@@ -71,11 +68,7 @@ class CategorySelectionFragment : DaggerFragment(R.layout.fragment_category_sele
     private fun setAdapter(response: List<Response>) {
         adapter.setCategories(response)
         adapter.setItemAction { data ->
-            navController.navigate(
-                R.id.category_to_jobs, bundleOf(
-                    "category" to Category(data)
-                )
-            )
+            navController.navigate(R.id.category_to_jobs, bundleOf("category" to Category(data)))
         }
     }
 }

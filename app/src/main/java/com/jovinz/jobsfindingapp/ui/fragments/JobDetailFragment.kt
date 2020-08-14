@@ -7,10 +7,10 @@ import dagger.android.support.DaggerFragment
 
 class JobDetailFragment : DaggerFragment(R.layout.fragment_job_detail) {
 
-    private lateinit var textToShow: String
-//    private var dataToSend: DataToSend? = null
+    private lateinit var jobId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        jobId = arguments?.getString("jobId").toString()
 //        textToShow = arguments?.getString("texttoshow").toString()
 //        dataToSend = arguments?.getParcelable("data")
     }

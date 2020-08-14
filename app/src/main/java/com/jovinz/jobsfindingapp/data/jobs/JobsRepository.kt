@@ -13,17 +13,17 @@ class JobsRepository @Inject constructor(
     private var categoriesResponse: CategoriesResponse
 ) {
 
-    fun getJobs(category: String): Flow<ResultData<List<JobsByLangResponseItem>?>> {
-        return flow {
-            emit(ResultData.Loading())
-            val jobsList = jobsApi.getJobsByLangFlow(category)
-//                .filter {
-//                    it.location?.contains("UK")!!
-//                }
-            if (jobsList.isEmpty()) emit(ResultData.Failed("No Items Found"))
-            else emit(ResultData.Success(jobsList))
-        }.flowOn(Dispatchers.IO)
-    }
+//    fun getJobs(category: String): Flow<ResultData<List<JobsByLangResponseItem>?>> {
+//        return flow {
+//            emit(ResultData.Loading())
+//            val jobsList = jobsApi.getJobsByLangFlow(category)
+////                .filter {
+////                    it.location?.contains("UK")!!
+////                }
+//            if (jobsList.isEmpty()) emit(ResultData.Failed("No Items Found"))
+//            else emit(ResultData.Success(jobsList))
+//        }.flowOn(Dispatchers.IO)
+//    }
 
     fun getCategories(): Flow<ResultData<CategoriesResponse?>> {
         return flow {
