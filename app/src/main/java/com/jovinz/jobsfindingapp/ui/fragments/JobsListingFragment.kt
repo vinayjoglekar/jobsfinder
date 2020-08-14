@@ -70,14 +70,14 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
     }
 
     private fun setObservers() {
-//        jobsViewModel.fetchJobs(category?.category.toString())
-//            .observe(viewLifecycleOwner, Observer { value ->
-//                when (value) {
-//                    is ResultData.Loading -> {
+        jobsViewModel.fetchJobs(category?.category.toString())
+            .observe(viewLifecycleOwner, Observer { value ->
+                when (value) {
+                    is ResultData.Loading -> {
 //                        tvNoJobs.gone()
 //                        progressJobsListing.visible()
-//                    }
-//                    is ResultData.Success -> {
+                    }
+                    is ResultData.Success -> {
 //                        progressJobsListing.gone()
 //                        if (value.data.isNullOrEmpty()) {
 //                            tvNoJobs.text = getString(R.string.no_jobs_available_for_this_category)
@@ -87,21 +87,17 @@ class JobsListingFragment : DaggerFragment(R.layout.fragment_jobs_listing) {
 //                        value.data.let {
 //                            adapter.setJobs(it)
 //                        }
-//                    }
-//                    is ResultData.Failed -> {
+                    }
+                    is ResultData.Failed -> {
 //                        tvNoJobs.text = getString(R.string.error_mmsg)
 //                        tvNoJobs.visible()
 //                        progressJobsListing.gone()
-//                    }
-//                }
-//            })
-
-//        jobsViewModel.fetchJobs(category?.category.toString()).subscribe {
-//
-//        }
+                    }
+                }
+            })
 
         lifecycleScope.launch {
-            jobsViewModel.fetchJobs(category?.category.toString()).collect {
+            jobsViewModel.fetchPagedJobs(category?.category.toString()).collect {
                 jobsPagedAdapter.submitData(it)
             }
         }
